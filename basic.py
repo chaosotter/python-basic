@@ -4,10 +4,10 @@ import sys
 import tty
 import termios
 
-import parser
-import runtime
-import system
-import value
+from lib import parser
+from lib import runtime
+from lib import system
+from lib import value
 
 # The default command prompt.
 PROMPT = 'READY'
@@ -31,7 +31,7 @@ class Basic:
         self.screen.WriteLn('Python BASIC Version 0.0.1')
         self.screen.WriteLn('Enjoy yourself and play nicely with others.')
         self.screen.WriteLn()
-        self.screen.WriteLn('Current input mode: ', self.input_mode)
+        self.screen.WriteLn('Using ', self.input_mode, ' input mode.')
         self.screen.WriteLn()
         self.screen.WriteLn(PROMPT)
 
@@ -62,7 +62,7 @@ class Basic:
     def Execute(self, line):
         """Attempts to execute the code in a line of input.
         
-        This is invoke by both the read-eval-print loop and the LOAD command,
+        This is invoked by both the read-eval-print loop and the LOAD command,
         which basically simulates typing in the program from the REPL.
         
         Returns true if the execution was successful.
