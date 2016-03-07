@@ -1,0 +1,1 @@
+from vstring import VString
