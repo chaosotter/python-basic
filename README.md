@@ -12,4 +12,5 @@ interpreters.  Be patient, and it will come. :)
 
 ## Current Status
 
-* Wrote this file.
+* Basic REPL in place.
+* In the process of porting the tokenizer.
