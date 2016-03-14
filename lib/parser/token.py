@@ -59,7 +59,7 @@ class Token:
                 self.value = self.value.lower()
 
     # The set of valid function names.
-    FUNCTIONS = set(
+    FUNCTIONS = set((
         'ABS', 'ACOS', 'ASC', 'ASIN', 'ATAN',
         'ATAN2', 'BIN$', 'CHR$', 'COS', 'DATE$',
         'EXP', 'HEX$', 'INSTR', 'INT', 'LEFT$',
@@ -67,10 +67,10 @@ class Token:
         'RIGHT$', 'RND', 'SGN', 'SIN', 'SIZE',
         'SPACE$', 'SQR', 'STR$', 'STRING$', 'TAB',
         'TAN', 'TIME$', 'VAL',
-    )
+    ))
 
     # The set of valid keywords.
-    KEYWORDS = set(
+    KEYWORDS = set((
         'AND', 'CLEAR', 'CLS', 'COLOR', 'CURSOR',
         'DATA', 'DEF', 'DELETE', 'DIM', 'ELSE',
         'END', 'FILES', 'FOLDER', 'FOLDERS', 'FOR',
@@ -81,7 +81,7 @@ class Token:
         'REMOVE', 'RENUM', 'RESTORE', 'RETURN', 'RUN',
         'SAVE', 'STEP', 'STOP', 'THEN', 'TO',
         'TROFF', 'TRON', 'WEND', 'WHILE', 'WIDTH',
-    )
+    ))
 
     def IsFn(self):
         """Checks whether this token is a reference to an FN function."""
