@@ -1,3 +1,6 @@
+from .. import exception
+import token
+
 class TokenStream:
     """Provides a stream abstraction for tokens in the BASIC language."""
 
@@ -17,7 +20,7 @@ class TokenStream:
                 token.IsType(token.TYPE_COLON) or
                 token.IsKeyword('ELSE'))
 
-    def EOF(self):
+    def Eof(self):
         """Checks if the stream is at its end."""
         return (self.offset >= len(self.buffer))
 
@@ -58,10 +61,10 @@ class TokenStream:
         Raises:
             runtime.TokenException if the token is not an ID type.
         """
-        token = self.Get()
-        if token.IsId():
-            return token
-        raise runtime.TokenException('Unexpected input "%s"' % str(token))
+        tok = self.Get()
+        if tok.IsId():
+            return tok
+        raise exception.TokenException('Unexpected input "%s"' % str(tok))
 
     def RequireInt(self):
         """Reads the next token in the stream, which must be an integer type.
@@ -72,10 +75,10 @@ class TokenStream:
         Raises:
             runtime.TokenException if the token is not an integer type.
         """
-        token = self.Get()
-        if token.IsInt():
-            return token
-        raise runtime.TokenException('Unexpected input "%s"' % str(token))
+        tok = self.Get()
+        if tok.IsInt():
+            return tok
+        raise exception.TokenException('Unexpected input "%s"' % str(tok))
 
     def RequireKeyword(self, keyword):
         """Reads the next token in the stream, which must be the given keyword.
@@ -89,10 +92,10 @@ class TokenStream:
         Raises:
             runtime.TokenException if the token is not the given keyword.
         """
-        token = self.Get()
-        if token.IsType(token.TYPE_KEYWORD) and token.value == keyword:
-            return token
-        raise runtime.TokenException('Unexpected input "%s"' % str(token))
+        tok = self.Get()
+        if tok.IsType(token.TYPE_KEYWORD) and tok.value == keyword:
+            return tok
+        raise exception.TokenException('Unexpected input "%s"' % str(tok))
 
     def Require(self, type):
         """Reads the next token in the stream, which must match the given type.
@@ -106,10 +109,10 @@ class TokenStream:
         Raises:
             runtime.TokenException in the token is not of the required type.
         """
-        token = self.Get()
-        if token.type == type:
-            return token
-        raise exception.TokenException('Unexpected input "%s"' % str(token))
+        tok = self.Get()
+        if tok.type == type:
+            return tok
+        raise exception.TokenException('Unexpected input "%s"' % str(tok))
 
     def Reset(self):
         """Resets the internal state so that subsequent reads start over."""

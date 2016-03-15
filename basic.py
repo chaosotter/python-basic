@@ -72,10 +72,10 @@ class Basic:
 
         # Try to read and evaluate a statement.
         try:
-            statement_set = p.read()
+            statement_set = p.Read()
             if statement_set:
                 for statement in statement_set.set:
-                    statement.validate(self.rt).evaluate(self.rt)
+                    statement.Validate(self.rt).Evaluate(self.rt)
             return True
         except Exception as e:
             self.screen.WriteLn(e)
