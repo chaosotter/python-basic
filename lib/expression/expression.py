@@ -1,6 +1,6 @@
 from .. import exception
 
-class Expression:
+class Expression(object):
     """The base class for all expressions."""
 
     def __init__(self):
@@ -25,11 +25,14 @@ class Expression:
 
         Returns:
             value.Value: The value of the expression.
+            
+        Raises:
+            exception.EvalException if the value is not numeric.
         """
         val = self.Evaluate(rt)
         if val.IsNumeric():
             return val
-        raise exception.EvaluationException(exception.Error.ERR_TYPE)
+        raise exception.EvalException(exception.Error.ERR_TYPE)
 
     def EvaluateToString(self, rt):
         """Evaluates the expression and makes sure that the result is a string.
@@ -39,11 +42,14 @@ class Expression:
 
         Returns:
             value.Value: The value of the expression.
+
+        Raises:
+            exception.EvalException if the value is not a string.
         """
         val = self.Evaluate(rt)
         if val.IsString():
             return val
-        raise exception.EvaluationException(exception.Error.ERR_TYPE)
+        raise exception.EvalException(exception.Error.ERR_TYPE)
 
     def __str__(self):
         """Constructs a string representation of the expression."""

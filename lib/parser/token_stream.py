@@ -107,7 +107,7 @@ class TokenStream:
             parser.Token: The next token.
 
         Raises:
-            runtime.TokenException in the token is not of the required type.
+            exception.TokenException if the token is not of the required type.
         """
         tok = self.Get()
         if tok.type == type:
