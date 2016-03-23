@@ -52,7 +52,7 @@ class Value(object):
 
     def AsString(self):
         """Returns this value as an actual Python string."""
-        raise exception.EvalException(exception.Error.ERR_TYPE)
+        return str(self)
 
     def RequireRange(self, min_value, max_value):
         """Requires this value to lie within a range to avoid an exception.
@@ -66,6 +66,6 @@ class Value(object):
             numeric type.
         """
         if not self.IsNumeric():
-            raise runtime.EvalException(runtime.Error.ERR_TYPE)
+            raise exception.EvalException(runtime.Error.ERR_TYPE)
         if self.AsFloat() < min_value or self.AsFloat() > max_value:
-            raise runtime.EvalException(runtime.Error.ERR_RANGE)
+            raise exception.EvalException(runtime.Error.ERR_RANGE)

@@ -1,8 +1,10 @@
+import re
+
 from .. import exception
 import value
 
 class VString(value.Value):
-    """The type of value represents a string."""
+    """The type of value that represents a string."""
 
     def __init__(self, value):
         super(VString, self).__init__(value)
@@ -31,23 +33,18 @@ class VString(value.Value):
         return self.value
 
     def IsValidFilename(self):
-        """Figures out whether this string represents a valid filename.
-        
-        TODO(chaosotter): Convert the original Javascript logic:
+        """Checks whether this string represents a valid filename."""
+        # Check the length first.
+        if len(self.value) < 1 or len(self.value) > 40:
+            return False
 
-        // Check the length first.
-        if (this.value.length < 1)  return false;
-        if (this.value.length > 40)  return false;
-  
-        // Check for bad characters.
-        var pattern = /[^-a-zA-Z0-9_. ]/;
-        if (this.value.match(pattern))  return false;
-  
-        // Check for leading or trailing whitespace.
-        if (this.value.charAt(0) == ' ')  return false;
-        if (this.value.charAt(this.value.length - 1) == ' ')  return false;
-  
-        // It must be okay!
-        return true;
-        """
-        return False
+        # Check for bad characters.
+        if re.match(r'[^-a-zA-Z0-9_. ]', self.value):
+            return False
+        
+        # Check for leading or trailing whitespace.
+        if self.value[0] == ' ' or self.value[-1] == ' ':
+            return False
+
+        # It must be okay!
+        return True
